@@ -29,5 +29,5 @@ HelloWorld >> renderContentOn: aCanvas [
 		
 	aCanvas anchor 
 		callback: [ self guessAgain ];
-		with: 'Ni cerca'
+		with: 'Ni cerca...'
 ]
