@@ -1,7 +1,7 @@
 Class {
 	#name : #Respuesta,
 	#superclass : #Descripcion,
-	#category : #'Objetos2-CuOOra'
+	#category : #'Objetos2-CuOOra-model'
 }
 
 { #category : #'as yet unclassified' }

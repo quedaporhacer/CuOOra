@@ -10,7 +10,7 @@ Class {
 		'follower',
 		'respuestas'
 	],
-	#category : #'Objetos2-CuOOra'
+	#category : #'Objetos2-CuOOra-model'
 }
 
 { #category : #constructor }
