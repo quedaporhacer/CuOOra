@@ -39,7 +39,8 @@ Pregunta >> initializeConTitulo: unTitulo conDescripcion: unaDescripcion [
 
 { #category : #accessing }
 Pregunta >> respuestas [
-  ^respuestas 
+	^ respuestas
+		asSortedCollection: [ :r1 :r2 | r1 calcularPuntaje > r2 calcularPuntaje ]
 ]
 
 { #category : #accessing }
