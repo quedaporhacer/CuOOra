@@ -5,8 +5,21 @@ Class {
 		'usuarios',
 		'topicos'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'Objetos2-CuOOra-model'
 }
+
+{ #category : #accessing }
+CuOOra class >> clearSoleInstance [
+	soleInstance := nil
+]
+
+{ #category : #accessing }
+CuOOra class >> soleInstance [
+	^ soleInstance ifNil: [ soleInstance := self new ]
+]
 
 { #category : #'as yet unclassified' }
 CuOOra >> agregarTopico: unTopico [
