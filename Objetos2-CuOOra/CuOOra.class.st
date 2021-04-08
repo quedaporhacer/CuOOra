@@ -34,6 +34,13 @@ CuOOra >> agregarUsuarioConNombre: unNombre conContraseña: unaContraseña [
 	^ user
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> autorDe: unaPregunta [
+	^ usuarios
+		detect: [ :each | each esAutorDe: unaPregunta ]
+		ifNone:[nil].
+]
+
 { #category : #settings }
 CuOOra >> borrarPregunta: unaPregunta [
 	topicos do: [ :topico | topico borrarPregunta: unaPregunta ].
@@ -81,6 +88,11 @@ CuOOra >> respuestas [
 CuOOra >> topicos [
 	^topicos
 	
+]
+
+{ #category : #'as yet unclassified' }
+CuOOra >> topicosDe: unaPregunta [
+	^ topicos select: [ :topico | topico dePregunta: unaPregunta ]
 ]
 
 { #category : #'as yet unclassified' }

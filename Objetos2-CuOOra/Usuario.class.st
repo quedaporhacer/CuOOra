@@ -80,6 +80,11 @@ Usuario >> contraseña [
 	^contraseña
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> esAutorDe: unaPregunta [
+	^preguntas anySatisfy: [ :each | each = unaPregunta ]
+]
+
 { #category : #initialization }
 Usuario >> initializeConNombre: unNombre conContraseña: unaContraseña [
 	nombre := unNombre.

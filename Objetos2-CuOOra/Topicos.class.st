@@ -25,11 +25,21 @@ Topicos >> borrarPregunta: unaPregunta [
 	^true.
 ]
 
+{ #category : #'as yet unclassified' }
+Topicos >> dePregunta: unaPregunta [
+	^ preguntas includes: unaPregunta 
+]
+
 { #category : #initialization }
 Topicos >> initializeConNombre: unNombre unaDescripcion: unaDescripcion [
 	nombre := unNombre.
 	descripcion := unaDescripcion.
 	preguntas := OrderedCollection new
+]
+
+{ #category : #accessing }
+Topicos >> nombre [
+	^nombre
 ]
 
 { #category : #accessing }

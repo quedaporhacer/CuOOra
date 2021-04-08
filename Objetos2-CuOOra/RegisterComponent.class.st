@@ -17,7 +17,10 @@ RegisterComponent >> renderButtonsOn: aCanvas [
 
 { #category : #rendering }
 RegisterComponent >> renderContentOn: aCanvas [
-	super renderContentOn: aCanvas 
+	aCanvas heading
+		level: 2;
+		with: 'Register'.
+	super renderContentOn: aCanvas
 ]
 
 { #category : #rendering }

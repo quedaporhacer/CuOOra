@@ -49,8 +49,7 @@ AccessGrantingComponent >> renderContentOn: aCanvas [
 	aCanvas
 		form: [ 
 			self renderInputElementsOn: aCanvas.
-			self renderButtonsOn: aCanvas 
-			]
+			self renderButtonsOn: aCanvas ]
 ]
 
 { #category : #rendering }
