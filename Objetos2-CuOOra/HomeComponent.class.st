@@ -6,6 +6,18 @@ Class {
 
 { #category : #rendering }
 HomeComponent >> renderContentOn: aCanvas [
-	aCanvas heading: 'Bienvenido ' , self session usuario nombre.
-	aCanvas horizontalRule
+	aCanvas heading: 'CuOOra '.
+	aCanvas text: self session usuario nombre.
+	aCanvas horizontalRule.
+	self renderQuestiosnOn: aCanvas .
+
+]
+
+{ #category : #rendering }
+HomeComponent >> renderQuestiosnOn: aCanvas [
+	self session usuario preguntasRelevantes 
+		do: [ :each | 
+			aCanvas
+				div: [ aCanvas paragraph: each titulo.
+					aCanvas paragraph: each descripcion ] ]
 ]

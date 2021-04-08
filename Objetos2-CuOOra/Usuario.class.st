@@ -103,7 +103,8 @@ Usuario >> preguntas [
 
 { #category : #accessing }
 Usuario >> preguntasRelevantes [
-	^(topicosDeInteres collect: [ :topico | topico preguntas ]) union: ( follower collect: [ :usuario |  usuario preguntas ] )
+	^ (topicosDeInteres flatCollect: [ :topico | topico preguntas ])
+		union: (follower flatCollect: [ :usuario | usuario preguntas ])
 ]
 
 { #category : #accessing }

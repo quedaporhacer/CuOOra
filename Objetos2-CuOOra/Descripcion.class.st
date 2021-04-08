@@ -34,6 +34,11 @@ Descripcion >> calcularPuntaje [
 	^ (self like - self dislike)
 ]
 
+{ #category : #accessing }
+Descripcion >> descripcion [
+	^descripcion
+]
+
 { #category : #'private ' }
 Descripcion >> dislike [
 	^ (puntajes reject: [ :puntaje | puntaje state ]) size 
