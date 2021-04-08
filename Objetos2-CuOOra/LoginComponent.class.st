@@ -1,3 +1,8 @@
+"
+| application |
+application := WAAdmin register: LoginComponent asApplicationAt: 'login'.
+application sessionClass: SessionWithUser.
+"
 Class {
 	#name : #LoginComponent,
 	#superclass : #AccessGrantingComponent,
@@ -6,7 +11,7 @@ Class {
 
 { #category : #'private protocol' }
 LoginComponent >> login [
-	(self model userWithEmail: nombre protectedBy: contraseña )
+	(self model usuarioConNombre: nombre conContraseña: contraseña)
 		ifNotNil: [ :it | self proceedWith: it ].
 	nombre := nil.
 	contraseña := nil
@@ -14,15 +19,15 @@ LoginComponent >> login [
 
 { #category : #rendering }
 LoginComponent >> registerNewUser [
-	self call: MainRegisterComponent new
+	self call: RegisterComponent new
 ]
 
 { #category : #rendering }
 LoginComponent >> renderButtonsOn: aCanvas [
-	self renderSignInButtonOn: aCanvas.
+	self renderSignInButtonOn: aCanvas. "iniciar sesion"
 	aCanvas horizontalRule.
-	aCanvas paragraph: 'Don''t have an account?'.
-	self renderSignUpButtonOn: aCanvas
+	aCanvas paragraph: 'Don''t have an account?'. 
+	self renderSignUpButtonOn: aCanvas "Crear cuenta"
 ]
 
 { #category : #rendering }

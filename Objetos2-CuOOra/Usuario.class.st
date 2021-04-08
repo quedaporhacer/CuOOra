@@ -75,6 +75,11 @@ Usuario >> calcularPuntajeRespuestas [
 	^ (self respuestasValidas) sumNumbers: [ :respuesta | respuesta calcularPuntaje ]
 ]
 
+{ #category : #accessing }
+Usuario >> contraseña [
+	^contraseña
+]
+
 { #category : #initialization }
 Usuario >> initializeConNombre: unNombre conContraseña: unaContraseña [
 	nombre := unNombre.
@@ -84,6 +89,11 @@ Usuario >> initializeConNombre: unNombre conContraseña: unaContraseña [
 	respuestas := OrderedCollection new.
 	topicosDeInteres := OrderedCollection new.
 	follower := OrderedCollection new.
+]
+
+{ #category : #accessing }
+Usuario >> nombre [
+	^nombre
 ]
 
 { #category : #accessing }

@@ -83,6 +83,14 @@ CuOOra >> topicos [
 	
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> usuarioConNombre: unNombre conContraseña: unaContraseña [
+
+		^ usuarios
+		detect: [ :each | each nombre  = unNombre  & (each contraseña  = unaContraseña ) ]
+		ifNone: [ nil ]
+]
+
 { #category : #accessing }
 CuOOra >> usuarios [
 	^usuarios

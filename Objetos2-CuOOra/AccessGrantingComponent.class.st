@@ -35,7 +35,7 @@ AccessGrantingComponent >> nombre: unNombre [
 
 { #category : #private }
 AccessGrantingComponent >> proceedWith: unUsuario [
-	self session user: unUsuario .
+	self session usuario: unUsuario.
 	self call: HomeComponent new
 ]
 
@@ -50,7 +50,7 @@ AccessGrantingComponent >> renderContentOn: aCanvas [
 		form: [ 
 			self renderInputElementsOn: aCanvas.
 			self renderButtonsOn: aCanvas 
-		].
+			]
 ]
 
 { #category : #rendering }
