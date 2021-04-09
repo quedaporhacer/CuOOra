@@ -45,11 +45,11 @@ MainComponent >> questionAndAnswerRedirect: unaPregunta [
 { #category : #rendering }
 MainComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
 	aCanvas anchor
-		callback: [ self setScore:   unPosteo value: true ];
+		callback: [ self setScore: unPosteo value: true ];
 		with: 'like'.
 	aCanvas text: ' |  '.
 	aCanvas anchor
-		callback: [ self setScore:   unPosteo value: false ];
+		callback: [ self setScore: unPosteo value: false ];
 		with: 'dislike'
 ]
 

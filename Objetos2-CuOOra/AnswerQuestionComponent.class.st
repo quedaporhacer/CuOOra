@@ -16,12 +16,12 @@ AnswerQuestionComponent >> addAnswer [
 ]
 
 { #category : #accessing }
-AnswerQuestionComponent >> descripcion^descripcion [ 
+AnswerQuestionComponent >> descripcion: unaDescripcion [
+	descripcion := unaDescripcion  
 ]
 
 { #category : #accessing }
-AnswerQuestionComponent >> descripcion: unaDescripcion [
-	descripcion := unaDescripcion  
+AnswerQuestionComponent >> descripcion^descripcion [ 
 ]
 
 { #category : #rendering }
