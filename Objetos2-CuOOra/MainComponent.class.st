@@ -19,7 +19,8 @@ MainComponent >> initializeCon: unaPregunta [
 
 { #category : #callback }
 MainComponent >> logOut [
-	self call: LoginComponent new.
+"para cerrar la sesion"
+	self call: LoginComponent new
 ]
 
 { #category : #accessing }
