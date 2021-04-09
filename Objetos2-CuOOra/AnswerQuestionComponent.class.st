@@ -24,6 +24,10 @@ AnswerQuestionComponent >> descripcion: unaDescripcion [
 	descripcion := unaDescripcion  
 ]
 
+{ #category : #accessing }
+AnswerQuestionComponent >> descripcion^descripcion [ 
+]
+
 { #category : #rendering }
 AnswerQuestionComponent >> renderContentOn: aCanvas [
 	super renderContentOn: aCanvas.
