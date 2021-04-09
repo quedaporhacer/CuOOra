@@ -24,10 +24,10 @@ LoginComponent >> registerNewUser [
 
 { #category : #rendering }
 LoginComponent >> renderButtonsOn: aCanvas [
-	self renderSignInButtonOn: aCanvas. "iniciar sesion"
+	self renderSignInButtonOn: aCanvas.	"iniciar sesion"
 	aCanvas horizontalRule.
-	aCanvas paragraph: 'Don''t have an account?'. 
-	self renderSignUpButtonOn: aCanvas "Crear cuenta"
+	aCanvas paragraph: '¿No tenes cuenta?'.
+	self renderSignUpButtonOn: aCanvas	"Crear cuenta"
 ]
 
 { #category : #rendering }
@@ -41,5 +41,5 @@ LoginComponent >> renderSignInButtonOn: aCanvas [
 LoginComponent >> renderSignUpButtonOn: aCanvas [
 	aCanvas submitButton
 		callback: [ self registerNewUser ];
-		with: 'Sign Up, it''s free'
+		with: 'Sign Up'
 ]
