@@ -18,7 +18,41 @@ CuOOra class >> clearSoleInstance [
 
 { #category : #accessing }
 CuOOra class >> soleInstance [
-	^ soleInstance ifNil: [ soleInstance := self new ]
+	|  juan diego pedro preguntaPedro preguntaDiego |
+	^ soleInstance
+		ifNil: [ soleInstance := self new.
+			pedro := soleInstance
+				agregarUsuarioConNombre: 'pedro@cuoora.com'
+				conContraseña: 'pedro@cuoora.com'.
+			diego := soleInstance
+				agregarUsuarioConNombre: 'diego@cuoora.com'
+				conContraseña: 'diego@cuoora.com'.
+			juan := soleInstance
+				agregarUsuarioConNombre: 'juan@cuoora.com'
+				conContraseña: 'juan@cuoora.com'.
+			juan agregarFollower: diego.
+			pedro agregarFollower: juan.
+			soleInstance
+				agregarTopico: (Topicos newConNombre: 'OO1' unaDescripcion: '');
+				agregarTopico: (Topicos newConNombre: 'Test de unidad' unaDescripcion: '');
+				agregarTopico: (Topicos newConNombre: 'Smalltalk' unaDescripcion: '').
+			preguntaPedro := pedro
+				agregarPreguntaConTitulo: '¿Para que sirve el metodo SetUp?'
+				conDescripcion: ''
+				conTopicos: (soleInstance topicos first: 2).
+			diego
+				agregarRespuestaDe: preguntaPedro
+				conDescripcion:
+					'Sirve para instanciar los objetos que son evaluados por el test en un único método y que se ejecute siempre antes de cada test.'.
+			preguntaDiego := diego
+				agregarPreguntaConTitulo: '¿Qué significa #messageNotUnderstood?'
+				conDescripcion: ''
+				conTopicos: (soleInstance topicos last: 2).
+			pedro
+				agregarRespuestaDe: preguntaDiego
+				conDescripcion:
+					'Significa que el objeto que recibió el mensaje no encontró ningún método para ejecutar en respuesta.'.
+				 ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -35,10 +69,10 @@ CuOOra >> agregarUsuarioConNombre: unNombre conContraseña: unaContraseña [
 ]
 
 { #category : #'as yet unclassified' }
-CuOOra >> autorDe: unaPregunta [
+CuOOra >> autorDe: unPost [
 	^ usuarios
-		detect: [ :each | each esAutorDe: unaPregunta ]
-		ifNone:[nil].
+		detect: [ :each | each esAutorDe: unPost ]
+		ifNone: [ nil ]
 ]
 
 { #category : #settings }

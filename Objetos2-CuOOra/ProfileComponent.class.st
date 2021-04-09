@@ -1,0 +1,48 @@
+Class {
+	#name : #ProfileComponent,
+	#superclass : #MainComponent,
+	#instVars : [
+		'usuario'
+	],
+	#category : #'Objetos2-CuOOra-ui'
+}
+
+{ #category : #'instance creation' }
+ProfileComponent class >> newConUsuario: unUsuario [
+^self new intializeConUsuario: unUsuario 
+]
+
+{ #category : #'as yet unclassified' }
+ProfileComponent >> follow [
+	self session usuario agregarFollower: usuario.
+]
+
+{ #category : #'as yet unclassified' }
+ProfileComponent >> intializeConUsuario: unUsuario [ 
+usuario := unUsuario 
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderContentOn: aCanvas [
+	super renderContentOn: aCanvas.
+	self renderTitleOn: aCanvas .
+	self renderQuestiosnOn: aCanvas  		
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderQuestiosnOn: aCanvas [
+	 usuario preguntas
+		do: [ :each | self renderQuestionOn: aCanvas aQuestion: each ]
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderTitleOn: aCanvas [
+	aCanvas
+		heading: [ aCanvas span: 'Preguntas de '.
+			aCanvas span: usuario nombre.
+			aCanvas space.
+			aCanvas
+				small: [ aCanvas anchor
+						callback: [ self follow ];
+						with: 'follow' ] ]
+]

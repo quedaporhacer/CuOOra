@@ -45,6 +45,11 @@ Descripcion >> dislike [
 
 ]
 
+{ #category : #accessing }
+Descripcion >> fechaYHora [
+	^fechaYHora 
+]
+
 { #category : #'as yet unclassified' }
 Descripcion >> getLikeDe: unUsuario [
 	(puntajes anySatisfy: [ :each | each autor = unUsuario ])

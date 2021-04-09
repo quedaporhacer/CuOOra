@@ -17,6 +17,11 @@ MainComponent >> initializeCon: unaPregunta [
 	pregunta := unaPregunta .
 ]
 
+{ #category : #callback }
+MainComponent >> logOut [
+	self call: LoginComponent new.
+]
+
 { #category : #accessing }
 MainComponent >> model [
 	^ CuOOra soleInstance
@@ -24,12 +29,44 @@ MainComponent >> model [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #callback }
+MainComponent >> profileRedirect: unUsuario [ 
+	self call: (ProfileComponent newConUsuario: unUsuario )
+]
+
+{ #category : #callback }
 MainComponent >> questionAndAnswerRedirect: unaPregunta [
 	self
 		call:
 			(QuestionAndAnswerComponent
 				newConPregunta: unaPregunta)
+]
+
+{ #category : #rendering }
+MainComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
+	aCanvas anchor
+		callback: [ self setScore:   unPosteo value: true ];
+		with: 'like'.
+	aCanvas text: ' |  '.
+	aCanvas anchor
+		callback: [ self setScore:   unPosteo value: false ];
+		with: 'dislike'
+]
+
+{ #category : #rendering }
+MainComponent >> renderAnswaersQuestionOn: aCanvas De: unaPregunta [
+	aCanvas text: ' | '.
+	aCanvas text: unaPregunta respuestas size.
+	aCanvas text: ' respuestas'
+]
+
+{ #category : #rendering }
+MainComponent >> renderAuthorPostOn: aCanvas De: unPost [ 
+	aCanvas text: 'Realizada por '.
+	aCanvas
+		strong: [ aCanvas anchor
+				callback: [ self profileRedirect: (self model autorDe: unPost) ];
+				with: (self model autorDe: unPost) nombre ]
 ]
 
 { #category : #rendering }
@@ -43,53 +80,58 @@ MainComponent >> renderHedaerOn: aCanvas [
 	aCanvas text: self session usuario nombre.
 	aCanvas space.
 	aCanvas anchor
-		callback: [ self answer ];
+		callback: [ self logOut ];
 		with: 'logout'.
-	aCanvas horizontalRule.
+	aCanvas space.
+	aCanvas anchor
+		callback: [ self answer ];
+		with: 'back'.
+	aCanvas horizontalRule
 ]
 
 { #category : #rendering }
 MainComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
 	aCanvas
-		div: [ aCanvas
-				big: [ aCanvas anchor
-						callback: [ self questionAndAnswerRedirect: unaPregunta ];
-						with: unaPregunta titulo ].
+		div: [ self renderTitleQuestionOn: aCanvas De: unaPregunta.
 			aCanvas break.
-			aCanvas
+			self renderTopicQuestionOn: aCanvas De: unaPregunta.
+			aCanvas break.
+			self renderAuthorPostOn: aCanvas De: unaPregunta.
+			self renderAnswaersQuestionOn: aCanvas De: unaPregunta.
+			aCanvas break.
+			self renderScorePostOn: aCanvas De: unaPregunta.
+			aCanvas break.
+			self renderAnchorScorePostOn: aCanvas De: unaPregunta.
+			aCanvas horizontalRule ]
+]
+
+{ #category : #rendering }
+MainComponent >> renderScorePostOn: aCanvas De: unPosteo [
+	aCanvas text: 'like '.
+	aCanvas text: unPosteo like.
+	aCanvas text: ' | dislike '.
+	aCanvas text: unPosteo dislike
+]
+
+{ #category : #rendering }
+MainComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
+	aCanvas 
+	 big: [ aCanvas anchor
+						callback: [ self questionAndAnswerRedirect: unaPregunta ];
+						with: unaPregunta titulo ]. 
+]
+
+{ #category : #rendering }
+MainComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
+	aCanvas
 				small: [ aCanvas text: 'topicos: '.
 					(self model topicosDe: unaPregunta)
 						do: [ :topico | 
 							aCanvas text: topico nombre.
-							aCanvas space ] ].	"topicos"
-			aCanvas
-				paragraph: [ aCanvas text: 'Realizada por '.
-					aCanvas strong: (self model autorDe: unaPregunta) nombre.
-					aCanvas text: ' | '.
-					aCanvas text: unaPregunta respuestas size.
-					aCanvas text: ' respuestas' ].
-			aCanvas
-				paragraph: [ aCanvas text: 'like '.
-					aCanvas text: unaPregunta like.
-					aCanvas text: ' | dislike '.
-					aCanvas text: unaPregunta dislike ].
-			aCanvas
-				paragraph: [ aCanvas anchor
-						callback: [ self setLike: unaPregunta ];
-						with: 'like'.
-					aCanvas text: ' |  '.
-					aCanvas anchor
-						callback: [ self setDislike: unaPregunta ];
-						with: 'dislike' ].
-			aCanvas horizontalRule ]
+							aCanvas space ] ].	
 ]
 
-{ #category : #initialization }
-MainComponent >> setDislike: unaPregunta [
-	unaPregunta agregarLikeConEstado: false conAutor: self session usuario
-]
-
-{ #category : #initialization }
-MainComponent >> setLike: unaPregunta [
-	unaPregunta agregarLikeConEstado: true conAutor: self session usuario.
+{ #category : #callback }
+MainComponent >> setScore: unaPregunta value: aBoolean [.
+	unaPregunta agregarLikeConEstado: aBoolean conAutor: self session usuario
 ]

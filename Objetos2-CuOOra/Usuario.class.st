@@ -81,8 +81,8 @@ Usuario >> contraseña [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> esAutorDe: unaPregunta [
-	^preguntas anySatisfy: [ :each | each = unaPregunta ]
+Usuario >> esAutorDe: unPost [
+	^ (preguntas union: respuestas) anySatisfy: [ :each | each = unPost ]
 ]
 
 { #category : #initialization }
@@ -104,6 +104,17 @@ Usuario >> nombre [
 { #category : #accessing }
 Usuario >> preguntas [ 
 	^preguntas 
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> preguntasPrincipales [
+	self preguntasRelevantes size < 5
+		ifTrue: [ ^ (self preguntasRelevantes first: self preguntasRelevantes size)
+				asSortedCollection: [ :p1 :p2 | p2 fechaYHora >= p1 fechaYHora ] ].
+			
+	^ (self preguntasRelevantes
+		asSortedCollection: [ :p1 :p2 | p1 fechaYHora >= p2 fechaYHora ])
+		first: 5
 ]
 
 { #category : #accessing }

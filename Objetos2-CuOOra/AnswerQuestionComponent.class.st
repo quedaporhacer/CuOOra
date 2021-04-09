@@ -35,9 +35,13 @@ AnswerQuestionComponent >> renderContentOn: aCanvas [
 AnswerQuestionComponent >> renderInputOn: aCanvas [
 	aCanvas text: 'RESPONDER'.
 	aCanvas
-		form: [ aCanvas textInput on: #descripcion of: self.
+		form: [ aCanvas textArea on: #descripcion of: self.
+			aCanvas break.
 			aCanvas submitButton
 				callback: [ self addAnswer ];
-				with: 'aceptar' ].
-	aCanvas button with: 'cancelar'
+				with: 'aceptar'.
+			aCanvas space.
+			aCanvas button
+				callback: [ self answer ];
+				with: 'cancelar' ]
 ]
