@@ -48,13 +48,14 @@ CreateQuestionComponent >> renderFormOn: aCanvas [
 			aCanvas
 				paragraph: [ aCanvas text: 'topicos'.
 					aCanvas textInput on: #topicos of: self ].
+				" findBetweenSubstrings: ','"
 			aCanvas submitButton
 				callback: [ self addQuestion ];
 				with: 'aceptar'.
 			aCanvas space.
 			aCanvas button
 				callback: [  ];
-				with: 'cancelar' ].
+				with: 'cancelar' ]
 ]
 
 { #category : #rendering }
