@@ -1,6 +1,6 @@
 Class {
 	#name : #ProfileComponent,
-	#superclass : #MainComponent,
+	#superclass : #QuestionComponent,
 	#instVars : [
 		'usuario'
 	],

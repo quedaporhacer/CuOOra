@@ -1,31 +1,18 @@
 Class {
-	#name : #MainComponent,
+	#name : #QuestionComponent,
 	#superclass : #HeaderComponent,
-	#instVars : [
-		'pregunta'
-	],
 	#category : #'Objetos2-CuOOra-ui'
 }
 
-{ #category : #'instance creation' }
-MainComponent class >> newConPregunta: unaPregunta [
-	^ self new initializeCon: unaPregunta
-]
-
-{ #category : #initialization }
-MainComponent >> initializeCon: unaPregunta [
-	pregunta := unaPregunta .
-]
-
 { #category : #accessing }
-MainComponent >> model [
+QuestionComponent >> model [
 	^ CuOOra soleInstance
 	
 
 ]
 
 { #category : #callback }
-MainComponent >> questionAndAnswerRedirect: unaPregunta [
+QuestionComponent >> questionAndAnswerRedirect: unaPregunta [
 	self
 		call:
 			(QuestionAndAnswerComponent
@@ -33,7 +20,7 @@ MainComponent >> questionAndAnswerRedirect: unaPregunta [
 ]
 
 { #category : #rendering }
-MainComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
+QuestionComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
 	aCanvas anchor
 		callback: [ self setScore: unPosteo value: true ];
 		with: 'like'.
@@ -44,14 +31,14 @@ MainComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
 ]
 
 { #category : #rendering }
-MainComponent >> renderAnswaersQuestionOn: aCanvas De: unaPregunta [
+QuestionComponent >> renderAnswaersQuestionOn: aCanvas De: unaPregunta [
 	aCanvas text: ' | '.
 	aCanvas text: unaPregunta respuestas size.
 	aCanvas text: ' respuestas'
 ]
 
 { #category : #rendering }
-MainComponent >> renderAuthorPostOn: aCanvas De: unPost [ 
+QuestionComponent >> renderAuthorPostOn: aCanvas De: unPost [ 
 	aCanvas text: 'Realizada por '.
 	aCanvas
 		strong: [ aCanvas anchor
@@ -60,7 +47,7 @@ MainComponent >> renderAuthorPostOn: aCanvas De: unPost [
 ]
 
 { #category : #rendering }
-MainComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
+QuestionComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
 	aCanvas
 		div: [ self renderTitleQuestionOn: aCanvas De: unaPregunta.
 			aCanvas break.
@@ -76,7 +63,7 @@ MainComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
 ]
 
 { #category : #rendering }
-MainComponent >> renderScorePostOn: aCanvas De: unPosteo [
+QuestionComponent >> renderScorePostOn: aCanvas De: unPosteo [
 	aCanvas text: 'like '.
 	aCanvas text: unPosteo like.
 	aCanvas text: ' | dislike '.
@@ -84,7 +71,7 @@ MainComponent >> renderScorePostOn: aCanvas De: unPosteo [
 ]
 
 { #category : #rendering }
-MainComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
+QuestionComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
 	aCanvas 
 	 big: [ aCanvas anchor
 						callback: [ self questionAndAnswerRedirect: unaPregunta ];
@@ -92,7 +79,7 @@ MainComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
 ]
 
 { #category : #rendering }
-MainComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
+QuestionComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
 	aCanvas
 		small: [ aCanvas text: 'topicos: '.
 			(self model topicosDe: unaPregunta)
@@ -103,6 +90,6 @@ MainComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
 ]
 
 { #category : #callback }
-MainComponent >> setScore: unaPregunta value: aBoolean [.
+QuestionComponent >> setScore: unaPregunta value: aBoolean [.
 	unaPregunta agregarLikeConEstado: aBoolean conAutor: self session usuario
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #AnswerQuestionComponent,
-	#superclass : #MainComponent,
+	#superclass : #QuestionConstructorComponent,
 	#instVars : [
 		'descripcion'
 	],

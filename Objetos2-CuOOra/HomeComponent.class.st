@@ -1,6 +1,6 @@
 Class {
 	#name : #HomeComponent,
-	#superclass : #MainComponent,
+	#superclass : #QuestionConstructorComponent,
 	#category : #'Objetos2-CuOOra-ui'
 }
 
