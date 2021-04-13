@@ -19,8 +19,8 @@ MainComponent >> initializeCon: unaPregunta [
 
 { #category : #callback }
 MainComponent >> logOut [
-	"para cerrar la sesion"
-	self call: LoginComponent new
+	self session unregister.
+	self requestContext redirectTo: self application  url
 ]
 
 { #category : #accessing }
@@ -78,7 +78,9 @@ MainComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 MainComponent >> renderHedaerOn: aCanvas [
 	aCanvas heading: 'CuOOra '.
-	aCanvas text: self session usuario nombre.
+	aCanvas anchor
+		callback: [ self profileRedirect: self session usuario  ];
+		with: self session usuario nombre.
 	aCanvas space.
 	aCanvas anchor
 		callback: [ self logOut ];
@@ -125,11 +127,12 @@ MainComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
 { #category : #rendering }
 MainComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
 	aCanvas
-				small: [ aCanvas text: 'topicos: '.
-					(self model topicosDe: unaPregunta)
-						do: [ :topico | 
-							aCanvas text: topico nombre.
-							aCanvas space ] ].	
+		small: [ aCanvas text: 'topicos: '.
+			(self model topicosDe: unaPregunta)
+				do: [ :topico | 
+					aCanvas text: topico nombre.
+					aCanvas space.
+					aCanvas space  ] ]
 ]
 
 { #category : #callback }

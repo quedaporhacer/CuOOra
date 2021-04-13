@@ -102,6 +102,13 @@ CuOOra >> borrarRespuesta: unaRespuesta [
 		borrarRespuesta: unaRespuesta
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> existeTopico: unStrign [
+	^ topicos
+		detect: [ :topico | topico nombre = unStrign ]
+		ifNone: [ nil ]
+]
+
 { #category : #initialization }
 CuOOra >> initialize [ 
 	usuarios := OrderedCollection new.

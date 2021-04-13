@@ -11,10 +11,16 @@ Class {
 
 { #category : #rendering }
 CreateQuestionComponent >> addQuestion [
-	self session usuario
-		agregarPreguntaConTitulo: titulo
-		conDescripcion: descripcion
-		conTopicos: topicos.
+	| colTopicos |
+	colTopicos := topicos findBetweenSubstrings: ','.
+	(colTopicos
+		allSatisfy: [ :nombreTopico | (self model existeTopico: nombreTopico) notNil ])
+		ifTrue: [ self session usuario
+				agregarPreguntaConTitulo: titulo
+				conDescripcion: descripcion
+				conTopicos:
+					(colTopicos
+						collect: [ :nombreTopico | self model existeTopico: nombreTopico ]) ]
 ]
 
 { #category : #accessing }
@@ -24,7 +30,12 @@ CreateQuestionComponent >> descripcion [
 
 { #category : #accessing }
 CreateQuestionComponent >> descripcion: unaDescripcion [
-	descripcion := descripcion
+	descripcion := unaDescripcion 
+]
+
+{ #category : #accessing }
+CreateQuestionComponent >> model [ 
+^CuOOra soleInstance 
 ]
 
 { #category : #rendering }
@@ -44,17 +55,16 @@ CreateQuestionComponent >> renderFormOn: aCanvas [
 					aCanvas textInput on: #titulo of: self ].
 			aCanvas
 				paragraph: [ aCanvas text: 'descripcion'.
-					aCanvas textInput on: #descripcion of: self ].
+					aCanvas textArea on: #descripcion of: self ].
 			aCanvas
 				paragraph: [ aCanvas text: 'topicos'.
 					aCanvas textInput on: #topicos of: self ].
-				" findBetweenSubstrings: ','"
 			aCanvas submitButton
 				callback: [ self addQuestion ];
 				with: 'aceptar'.
 			aCanvas space.
 			aCanvas button
-				callback: [  ];
+				callback: [ self answer  ];
 				with: 'cancelar' ]
 ]
 
@@ -85,6 +95,6 @@ CreateQuestionComponent >> topicos [
 ]
 
 { #category : #accessing }
-CreateQuestionComponent >> topicos: unosTopicos [
-	topicos addAll: unosTopicos 
+CreateQuestionComponent >> topicos: unTopico [ 
+	topicos := unTopico.
 ]
