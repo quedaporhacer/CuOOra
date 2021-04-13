@@ -1,6 +1,6 @@
 Class {
 	#name : #MainComponent,
-	#superclass : #WAComponent,
+	#superclass : #HeaderComponent,
 	#instVars : [
 		'pregunta'
 	],
@@ -17,22 +17,11 @@ MainComponent >> initializeCon: unaPregunta [
 	pregunta := unaPregunta .
 ]
 
-{ #category : #callback }
-MainComponent >> logOut [
-	self session unregister.
-	self requestContext redirectTo: self application  url
-]
-
 { #category : #accessing }
 MainComponent >> model [
 	^ CuOOra soleInstance
 	
 
-]
-
-{ #category : #callback }
-MainComponent >> profileRedirect: unUsuario [ 
-	self call: (ProfileComponent newConUsuario: unUsuario )
 ]
 
 { #category : #callback }
@@ -68,28 +57,6 @@ MainComponent >> renderAuthorPostOn: aCanvas De: unPost [
 		strong: [ aCanvas anchor
 				callback: [ self profileRedirect: (self model autorDe: unPost) ];
 				with: (self model autorDe: unPost) nombre ]
-]
-
-{ #category : #rendering }
-MainComponent >> renderContentOn: aCanvas [
-	self renderHedaerOn: aCanvas
-]
-
-{ #category : #rendering }
-MainComponent >> renderHedaerOn: aCanvas [
-	aCanvas heading: 'CuOOra '.
-	aCanvas anchor
-		callback: [ self profileRedirect: self session usuario  ];
-		with: self session usuario nombre.
-	aCanvas space.
-	aCanvas anchor
-		callback: [ self logOut ];
-		with: 'logout'.
-	aCanvas space.
-	aCanvas anchor
-		callback: [ self answer ];
-		with: 'back'.
-	aCanvas horizontalRule
 ]
 
 { #category : #rendering }

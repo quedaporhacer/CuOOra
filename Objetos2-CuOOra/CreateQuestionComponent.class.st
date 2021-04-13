@@ -1,6 +1,6 @@
 Class {
 	#name : #CreateQuestionComponent,
-	#superclass : #WAComponent,
+	#superclass : #HeaderComponent,
 	#instVars : [
 		'titulo',
 		'descripcion',
@@ -66,17 +66,6 @@ CreateQuestionComponent >> renderFormOn: aCanvas [
 			aCanvas button
 				callback: [ self answer  ];
 				with: 'cancelar' ]
-]
-
-{ #category : #rendering }
-CreateQuestionComponent >> renderHedaerOn: aCanvas [
-	aCanvas heading: 'CuOOra '.
-	aCanvas text: self session usuario nombre.
-	aCanvas space.
-	aCanvas anchor
-		callback: [ self answer ];
-		with: 'logout'.
-	aCanvas horizontalRule
 ]
 
 { #category : #accessing }

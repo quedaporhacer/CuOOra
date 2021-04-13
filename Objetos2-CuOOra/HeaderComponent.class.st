@@ -1,0 +1,38 @@
+Class {
+	#name : #HeaderComponent,
+	#superclass : #WAComponent,
+	#category : #'Objetos2-CuOOra-ui'
+}
+
+{ #category : #callback }
+HeaderComponent >> logOut [
+	self session unregister.
+	self requestContext redirectTo: self application  url
+]
+
+{ #category : #callback }
+HeaderComponent >> profileRedirect: unUsuario [ 
+	self call: (ProfileComponent newConUsuario: unUsuario )
+]
+
+{ #category : #rendering }
+HeaderComponent >> renderContentOn: aCanvas [
+	self renderHedaerOn: aCanvas
+]
+
+{ #category : #rendering }
+HeaderComponent >> renderHedaerOn: aCanvas [
+	aCanvas heading: 'CuOOra '.
+	aCanvas anchor
+		callback: [ self profileRedirect: self session usuario  ];
+		with: self session usuario nombre.
+	aCanvas space.
+	aCanvas anchor
+		callback: [ self logOut ];
+		with: 'logout'.
+	aCanvas space.
+	aCanvas anchor
+		callback: [ self answer ];
+		with: 'back'.
+	aCanvas horizontalRule
+]
