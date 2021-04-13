@@ -37,10 +37,10 @@ Usuario >> agregarPreguntaConTitulo: unTitulo conDescripcion: unaDescripcion con
 { #category : #'as yet unclassified' }
 Usuario >> agregarRespuestaDe: unaPregunta conDescripcion: unaDescipcion [
 	| res |
-	res := Respuesta newConDescripcion: unaDescipcion.
+	res := Posteo newConDescripcion: unaDescipcion.
 	unaPregunta agregarRespuesta: res.
 	respuestas add: res.
-	^res.
+	^ res
 ]
 
 { #category : #settings }

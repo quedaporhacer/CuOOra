@@ -1,5 +1,5 @@
 Class {
-	#name : #DescripcionTest,
+	#name : #PosteoTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'descripcion'
@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #running }
-DescripcionTest >> setUp [
-	descripcion:= Descripcion  newConDescripcion: 'descripcion'
+PosteoTest >> setUp [
+	descripcion:= Posteo  newConDescripcion: 'descripcion'
 ]
 
 { #category : #tests }
-DescripcionTest >> testAgregarLikeConEstadoconAutor [
+PosteoTest >> testAgregarLikeConEstadoconAutor [
 	| user user2 |
 	user := Usuario newConNombre: 'juan' conContraseña: 'perez'.
 	self assert: descripcion puntaje size equals: 0.
@@ -31,20 +31,22 @@ DescripcionTest >> testAgregarLikeConEstadoconAutor [
 ]
 
 { #category : #tests }
-DescripcionTest >> testCalcularPuntaje [
+PosteoTest >> testCalcularPuntaje [
 	| usuario |
-	self assert: descripcion calcularPuntaje equals: 0.
+	self assert: descripcion calcularPuntaje equals: 20.
 	usuario := Usuario newConNombre: 'juan' conContraseña: '123'.
 	descripcion agregarLikeConEstado: true conAutor: usuario.
-	self assert: descripcion calcularPuntaje equals: 1.
+	self assert: descripcion calcularPuntaje equals: 21.
 	descripcion agregarLikeConEstado: false conAutor: usuario.
-	self assert: descripcion calcularPuntaje equals: -1.
-	descripcion agregarLikeConEstado: true conAutor: (Usuario newConNombre: 'ignacio' conContraseña: '123' ).
-	self assert: descripcion calcularPuntaje equals: 0.
+	self assert: descripcion calcularPuntaje equals: 19.
+	descripcion
+		agregarLikeConEstado: true
+		conAutor: (Usuario newConNombre: 'ignacio' conContraseña: '123').
+	self assert: descripcion calcularPuntaje equals: 20
 ]
 
 { #category : #tests }
-DescripcionTest >> testGetLikeDe [
+PosteoTest >> testGetLikeDe [
 	| user |
 	user := Usuario newConNombre: 'juan' conContraseña: 'perez'.
 	self assert: (descripcion getLikeDe: user) equals: nil.

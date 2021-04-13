@@ -1,5 +1,5 @@
 Class {
-	#name : #Topicos,
+	#name : #Topico,
 	#superclass : #Object,
 	#instVars : [
 		'nombre',
@@ -10,39 +10,39 @@ Class {
 }
 
 { #category : #'instance creation' }
-Topicos class >> newConNombre: unNombre unaDescripcion: unaDescripcion [
+Topico class >> newConNombre: unNombre unaDescripcion: unaDescripcion [
 	^self new initializeConNombre: unNombre unaDescripcion: unaDescripcion
 ]
 
 { #category : #settings }
-Topicos >> agregarPregunta: unaPregunta [ 
+Topico >> agregarPregunta: unaPregunta [ 
  preguntas add: unaPregunta
 ]
 
 { #category : #settings }
-Topicos >> borrarPregunta: unaPregunta [
+Topico >> borrarPregunta: unaPregunta [
 	preguntas remove: unaPregunta ifAbsent: [ ^ false ].
 	^true.
 ]
 
 { #category : #'as yet unclassified' }
-Topicos >> dePregunta: unaPregunta [
+Topico >> dePregunta: unaPregunta [
 	^ preguntas includes: unaPregunta 
 ]
 
 { #category : #initialization }
-Topicos >> initializeConNombre: unNombre unaDescripcion: unaDescripcion [
+Topico >> initializeConNombre: unNombre unaDescripcion: unaDescripcion [
 	nombre := unNombre.
 	descripcion := unaDescripcion.
 	preguntas := OrderedCollection new
 ]
 
 { #category : #accessing }
-Topicos >> nombre [
+Topico >> nombre [
 	^nombre
 ]
 
 { #category : #accessing }
-Topicos >> preguntas [
+Topico >> preguntas [
 	^preguntas 
 ]

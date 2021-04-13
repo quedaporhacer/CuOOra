@@ -15,8 +15,8 @@ UsuarioTest >> setUp [
 { #category : #'as yet unclassified' }
 UsuarioTest >> testAgregarPreguntaConTituloconDescripcionconTopicos [
 	| topicos topico1 topico2 |
-	topico1 := Topicos newConNombre: 'top1' unaDescripcion: 'prueba'.
-	topico2 := Topicos newConNombre: 'top2' unaDescripcion: 'prueba'.
+	topico1 := Topico newConNombre: 'top1' unaDescripcion: 'prueba'.
+	topico2 := Topico newConNombre: 'top2' unaDescripcion: 'prueba'.
 	topicos := OrderedCollection new.
 	topicos add: topico1.
 	topicos add: topico2.
@@ -52,7 +52,7 @@ UsuarioTest >> testCalcularPuntaje [
 	| topicos top |
 	self assert: usuario calcularPuntaje equals: 0.
 	topicos := OrderedCollection new.
-	top := Topicos newConNombre: 'top1' unaDescripcion: 'prueba'.
+	top := Topico newConNombre: 'top1' unaDescripcion: 'prueba'.
 	topicos add: top.
 	usuario
 		agregarPreguntaConTitulo: '?'
@@ -79,8 +79,8 @@ UsuarioTest >> testPreguntasRelevantes [
 	| usuario2 topicos topicos2 topico1 topico2 |
 	self assert: usuario preguntasRelevantes size equals: 0.
 	topicos := OrderedCollection new.
-	topico1 := Topicos newConNombre: 'top1' unaDescripcion: 'top1'.
-	topico2 := Topicos newConNombre: 'top2' unaDescripcion: 'top2'.
+	topico1 := Topico newConNombre: 'top1' unaDescripcion: 'top1'.
+	topico2 := Topico newConNombre: 'top2' unaDescripcion: 'top2'.
 	topicos add: topico1.
 	usuario2 := Usuario
 		newConNombre: 'seguido'
@@ -112,7 +112,7 @@ UsuarioTest >> testRespuestasValidas [
 		conDescripcion: 'des'.
 	self assert: usuario respuestasValidas size equals: 1.
 	topicos := OrderedCollection new.
-	topicos add: (Topicos newConNombre: 'top' unaDescripcion: 'desc').
+	topicos add: (Topico newConNombre: 'top' unaDescripcion: 'desc').
 	usuario
 		agregarPreguntaConTitulo: '?'
 		conDescripcion: 'desc'

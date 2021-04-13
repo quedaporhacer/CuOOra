@@ -9,7 +9,7 @@ Class {
 
 { #category : #tests }
 TopicoTest >> setUp [
-	topico:= (Topicos newConNombre: 'top' unaDescripcion: 'setUp')
+	topico:= (Topico newConNombre: 'top' unaDescripcion: 'setUp')
 ]
 
 { #category : #tests }

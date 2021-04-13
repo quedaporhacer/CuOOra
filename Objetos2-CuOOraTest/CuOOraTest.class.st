@@ -27,7 +27,7 @@ CuOOraTest >> testBorrarPregunta [
 	usuario := cuoora
 		agregarUsuarioConNombre: 'nombre'
 		conContraseña: 'contrasenia'.
-	topico := Topicos newConNombre: 'top' unaDescripcion: 'top'.
+	topico := Topico newConNombre: 'top' unaDescripcion: 'top'.
 	cuoora agregarTopico: topico.
 	pregunta := usuario
 		agregarPreguntaConTitulo: '?'
@@ -53,7 +53,7 @@ CuOOraTest >> testBorrarRespuesta [
 		agregarUsuarioConNombre: 'santiago'
 		conContraseña: '123'.
 	topicos := OrderedCollection new.
-	topicos add: (Topicos newConNombre: 'top' unaDescripcion: 'top').
+	topicos add: (Topico newConNombre: 'top' unaDescripcion: 'top').
 	pregunta := usuario
 		agregarPreguntaConTitulo: '?'
 		conDescripcion: 'desc'

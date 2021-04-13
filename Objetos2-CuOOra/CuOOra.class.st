@@ -33,9 +33,9 @@ CuOOra class >> soleInstance [
 			juan agregarFollower: diego.
 			pedro agregarFollower: juan.
 			soleInstance
-				agregarTopico: (Topicos newConNombre: 'OO1' unaDescripcion: '');
-				agregarTopico: (Topicos newConNombre: 'Test de unidad' unaDescripcion: '');
-				agregarTopico: (Topicos newConNombre: 'Smalltalk' unaDescripcion: '').
+				agregarTopico: (Topico newConNombre: 'OO1' unaDescripcion: '');
+				agregarTopico: (Topico newConNombre: 'Test de unidad' unaDescripcion: '');
+				agregarTopico: (Topico newConNombre: 'Smalltalk' unaDescripcion: '').
 			preguntaPedro := pedro
 				agregarPreguntaConTitulo: '¿Para que sirve el metodo SetUp?'
 				conDescripcion: ''

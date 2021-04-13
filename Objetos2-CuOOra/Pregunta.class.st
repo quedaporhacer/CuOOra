@@ -1,6 +1,6 @@
 Class {
 	#name : #Pregunta,
-	#superclass : #Descripcion,
+	#superclass : #Posteo,
 	#instVars : [
 		'titulo',
 		'respuestas'
@@ -27,7 +27,7 @@ Pregunta >> borrarRespuesta: unaRespuesta [
 
 { #category : #accessing }
 Pregunta >> calcularPuntaje [
-	^ super calcularPuntaje + 50
+	^ super calcularPuntaje + 30
 ]
 
 { #category : #initialization }

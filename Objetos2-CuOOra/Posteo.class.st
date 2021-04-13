@@ -1,5 +1,5 @@
 Class {
-	#name : #Descripcion,
+	#name : #Posteo,
 	#superclass : #Object,
 	#instVars : [
 		'descripcion',
@@ -10,12 +10,12 @@ Class {
 }
 
 { #category : #'instance creation' }
-Descripcion class >> newConDescripcion: unaDescripcion [
+Posteo class >> newConDescripcion: unaDescripcion [
 	^(self new) initializeConDescripcion: unaDescripcion 
 ]
 
 { #category : #'as yet unclassified' }
-Descripcion >> agregarLikeConEstado: unEstado conAutor: unUsuario [
+Posteo >> agregarLikeConEstado: unEstado conAutor: unUsuario [
 	(self getLikeDe: unUsuario)
 		ifNotNil: [ 
 			puntajes remove: (self getLikeDe: unUsuario).
@@ -25,51 +25,51 @@ Descripcion >> agregarLikeConEstado: unEstado conAutor: unUsuario [
 ]
 
 { #category : #'as yet unclassified' }
-Descripcion >> borrarLike [
+Posteo >> borrarLike [
 	puntajes removeAll
 ]
 
 { #category : #'as yet unclassified' }
-Descripcion >> calcularPuntaje [
-	^ (self like - self dislike)
+Posteo >> calcularPuntaje [
+	^ (self like - self dislike) + 20
 ]
 
 { #category : #accessing }
-Descripcion >> descripcion [
+Posteo >> descripcion [
 	^descripcion
 ]
 
 { #category : #'private ' }
-Descripcion >> dislike [
+Posteo >> dislike [
 	^ (puntajes reject: [ :puntaje | puntaje state ]) size 
 
 ]
 
 { #category : #accessing }
-Descripcion >> fechaYHora [
+Posteo >> fechaYHora [
 	^fechaYHora 
 ]
 
 { #category : #'as yet unclassified' }
-Descripcion >> getLikeDe: unUsuario [
+Posteo >> getLikeDe: unUsuario [
 	(puntajes anySatisfy: [ :each | each autor = unUsuario ])
 		ifTrue: [ ^ puntajes detect: [ :each | each autor = unUsuario ] ].
 		^nil
 ]
 
 { #category : #initialization }
-Descripcion >> initializeConDescripcion: unaDescripcion [
+Posteo >> initializeConDescripcion: unaDescripcion [
 	descripcion := unaDescripcion.
 	fechaYHora := DateAndTime now.
 	puntajes := OrderedCollection new
 ]
 
 { #category : #'private ' }
-Descripcion >> like [
+Posteo >> like [
 ^ (puntajes select: [ :puntaje | puntaje state ]) size
 ]
 
 { #category : #'as yet unclassified' }
-Descripcion >> puntaje [
+Posteo >> puntaje [
 	^puntajes 
 ]
