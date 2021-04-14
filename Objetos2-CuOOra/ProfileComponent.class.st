@@ -12,12 +12,12 @@ ProfileComponent class >> newConUsuario: unUsuario [
 ^self new intializeConUsuario: unUsuario 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #callbacks }
 ProfileComponent >> follow [
 	self session usuario agregarFollower: usuario.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 ProfileComponent >> intializeConUsuario: unUsuario [ 
 usuario := unUsuario 
 ]

@@ -5,14 +5,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-QuestionAndAnswerComponent >> answerQuestionComponent [
+QuestionAndAnswerComponent >> answerQuestionRedirect [
 	self call: (AnswerQuestionComponent newConPregunta: pregunta).
 ]
 
 { #category : #rendering }
 QuestionAndAnswerComponent >> renderAnchorOn: aCanvas [
 	aCanvas anchor
-		callback: [ self answerQuestionComponent  ];
+		callback: [ self answerQuestionRedirect  ];
 		with: '+ agregar una respuesta'
 ]
 

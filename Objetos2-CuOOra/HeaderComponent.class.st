@@ -10,6 +10,11 @@ HeaderComponent >> logOut [
 	self requestContext redirectTo: self application  url
 ]
 
+{ #category : #accessing }
+HeaderComponent >> model [ 
+^CuOOra soleInstance 
+]
+
 { #category : #callback }
 HeaderComponent >> profileRedirect: unUsuario [ 
 	self call: (ProfileComponent newConUsuario: unUsuario )

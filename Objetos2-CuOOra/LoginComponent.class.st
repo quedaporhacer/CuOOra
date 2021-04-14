@@ -1,7 +1,6 @@
 "
-| application |
-application := WAAdmin register: LoginComponent asApplicationAt: 'login'.
-application sessionClass: SessionWithUser.
+(WAAdmin register: LoginComponent asApplicationAt: 'login')sessionClass: SessionWithUser.
+ 
 "
 Class {
 	#name : #LoginComponent,

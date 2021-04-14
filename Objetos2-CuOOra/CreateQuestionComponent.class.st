@@ -9,20 +9,6 @@ Class {
 	#category : #'Objetos2-CuOOra-ui'
 }
 
-{ #category : #rendering }
-CreateQuestionComponent >> addQuestion [
-	| colTopicos |
-	colTopicos := topicos findBetweenSubstrings: ','.
-	(colTopicos
-		allSatisfy: [ :nombreTopico | (self model existeTopico: nombreTopico) notNil ])
-		ifTrue: [ self session usuario
-				agregarPreguntaConTitulo: titulo
-				conDescripcion: descripcion
-				conTopicos:
-					(colTopicos
-						collect: [ :nombreTopico | self model existeTopico: nombreTopico ]) ]
-]
-
 { #category : #accessing }
 CreateQuestionComponent >> descripcion [
 	^descripcion 
@@ -33,9 +19,18 @@ CreateQuestionComponent >> descripcion: unaDescripcion [
 	descripcion := unaDescripcion 
 ]
 
-{ #category : #accessing }
-CreateQuestionComponent >> model [ 
-^CuOOra soleInstance 
+{ #category : #callback }
+CreateQuestionComponent >> newQuestionRedirect [
+	| colTopicos |
+	colTopicos := topicos findBetweenSubstrings: ','.
+	(colTopicos
+		allSatisfy: [ :nombreTopico | (self model existeTopico: nombreTopico) notNil ])
+		ifTrue: [ self session usuario
+				agregarPreguntaConTitulo: titulo
+				conDescripcion: descripcion
+				conTopicos:
+					(colTopicos
+						collect: [ :nombreTopico | self model existeTopico: nombreTopico ]) ]
 ]
 
 { #category : #rendering }
@@ -60,7 +55,7 @@ CreateQuestionComponent >> renderFormOn: aCanvas [
 				paragraph: [ aCanvas text: 'topicos'.
 					aCanvas textInput on: #topicos of: self ].
 			aCanvas submitButton
-				callback: [ self addQuestion ];
+				callback: [ self newQuestionRedirect ];
 				with: 'aceptar'.
 			aCanvas space.
 			aCanvas button

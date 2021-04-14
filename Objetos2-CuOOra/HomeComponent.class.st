@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #adding }
-HomeComponent >> addQuestion [
+HomeComponent >> newQuestionRedirect [
 	self call: CreateQuestionComponent new.
 ]
 
@@ -21,7 +21,7 @@ HomeComponent >> renderQuestiosnOn: aCanvas [
 		level: 2;
 		with: 'Ultimas Preguntas'.
 	aCanvas anchor
-		callback: [ self addQuestion ];
+		callback: [ self newQuestionRedirect ];
 		with: '+ hacer una pregunta'.
 	aCanvas break.
 	aCanvas break.
