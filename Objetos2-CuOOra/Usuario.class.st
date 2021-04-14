@@ -85,6 +85,11 @@ Usuario >> esAutorDe: unPost [
 	^ (preguntas union: respuestas) anySatisfy: [ :each | each = unPost ]
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> follow: unUsuario [
+	^follower includes: unUsuario  
+]
+
 { #category : #initialization }
 Usuario >> initializeConNombre: unNombre conContraseña: unaContraseña [
 	nombre := unNombre.
