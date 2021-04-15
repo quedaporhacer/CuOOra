@@ -30,6 +30,16 @@ ProfileComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
+ProfileComponent >> renderFollowOn: aCanvas de: unUsuario [
+	(self session usuario follow: usuario)
+						ifTrue: [ aCanvas small: 'following' ]
+						ifFalse: [ aCanvas
+								small: [ aCanvas anchor
+										callback: [ self follow ];
+										with: 'follow' ] ]
+]
+
+{ #category : #rendering }
 ProfileComponent >> renderQuestiosnOn: aCanvas [
 	 usuario preguntas
 		do: [ :each | self renderQuestionOn: aCanvas aQuestion: each ]
@@ -42,9 +52,7 @@ ProfileComponent >> renderTitleOn: aCanvas [
 		ifFalse: [ aCanvas
 				heading: [ aCanvas span: 'Preguntas de '.
 					aCanvas span: usuario nombre.
-					aCanvas space.
-					aCanvas
-						small: [ aCanvas anchor
-								callback: [ self follow ];
-								with: 'follow' ] ] ]
+					aCanvas space.	
+		self renderFollowOn: aCanvas de: usuario .
+					 ] ]
 ]
