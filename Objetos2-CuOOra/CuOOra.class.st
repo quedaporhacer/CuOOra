@@ -77,35 +77,29 @@ CuOOra >> autorDe: unPost [
 
 { #category : #settings }
 CuOOra >> borrarPregunta: unaPregunta [
-	topicos do: [ :topico | topico borrarPregunta: unaPregunta ].
+	(self topicosDe: unaPregunta ) do: [ :topico | topico borrarPregunta: unaPregunta ].
 	
 	unaPregunta respuestas
 		do: [ :respuesta | self borrarRespuesta: respuesta ].
-		
-	(usuarios
-		detect: [ :usuario | usuario preguntas includes: unaPregunta ])
-		borrarPregunta: unaPregunta.
-		
-	unaPregunta borrarLike.
+	(self autorDe: unaPregunta) borrarPregunta: unaPregunta.
+	unaPregunta borrarLike
 ]
 
 { #category : #'as yet unclassified' }
 CuOOra >> borrarRespuesta: unaRespuesta [
 
-
 	((usuarios flatCollect: [ :usuario | usuario preguntas ])
 		detect: [ :pregunta | pregunta respuestas includes: unaRespuesta ])
-		borrarRespuesta: unaRespuesta. 
-		unaRespuesta borrarLike.
-	(usuarios
-		detect: [ :usuario | usuario respuestas includes: unaRespuesta ])
-		borrarRespuesta: unaRespuesta
+		borrarRespuesta: unaRespuesta.
+		
+	unaRespuesta borrarLike.
+	(self autorDe: unaRespuesta) borrarRespuesta: unaRespuesta
 ]
 
 { #category : #'as yet unclassified' }
-CuOOra >> existeTopico: unStrign [
+CuOOra >> existeTopico: unString [
 	^ topicos
-		detect: [ :topico | topico nombre = unStrign ]
+		detect: [ :topico | topico nombre = unString ]
 		ifNone: [ nil ]
 ]
 

@@ -62,17 +62,10 @@ Usuario >> borrarRespuesta: unaRespuesta [
 
 { #category : #accessing }
 Usuario >> calcularPuntaje [
-	^ self calcularPuntajePreguntas + self calcularPuntajeRespuestas 
-]
+	"^ self calcularPuntajePreguntas + self calcularPuntajeRespuestas"
 
-{ #category : #'private ' }
-Usuario >> calcularPuntajePreguntas [
-	^ preguntas 	sumNumbers: [ :pregunta | pregunta calcularPuntaje ]
-]
-
-{ #category : #'private ' }
-Usuario >> calcularPuntajeRespuestas [
-	^ (self respuestasValidas) sumNumbers: [ :respuesta | respuesta calcularPuntaje ]
+	^ (preguntas union: self respuestasValidas )
+		sumNumbers: [ :posteo | posteo calcularPuntaje ]
 ]
 
 { #category : #accessing }

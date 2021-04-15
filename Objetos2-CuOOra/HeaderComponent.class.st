@@ -29,15 +29,12 @@ HeaderComponent >> renderContentOn: aCanvas [
 HeaderComponent >> renderHedaerOn: aCanvas [
 	aCanvas heading: 'CuOOra '.
 	aCanvas anchor
-		callback: [ self profileRedirect: self session usuario  ];
+		callback: [ self profileRedirect: self session usuario ];
 		with: self session usuario nombre.
 	aCanvas space.
 	aCanvas anchor
 		callback: [ self logOut ];
 		with: 'logout'.
 	aCanvas space.
-	aCanvas anchor
-		callback: [ self answer ];
-		with: 'back'.
 	aCanvas horizontalRule
 ]
