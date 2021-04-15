@@ -47,6 +47,25 @@ UsuarioTest >> testAgregarRespuestaDeConDescripcion [
 	self assert: preg respuestas size equals: 2 
 ]
 
+{ #category : #accessing }
+UsuarioTest >> testBorrarPosteo [
+	| topicos topico pregunta respuesta |
+	self assert: (usuario borrarPosteo: 'EstoNoEsUnPosteo') equals: false.
+	topicos := OrderedCollection new.
+	topico := Topico newConNombre: '?' unaDescripcion: ''.
+	topicos add: topico.
+	pregunta := usuario
+		agregarPreguntaConTitulo: '?'
+		conDescripcion: 'desc'
+		conTopicos: topicos.
+	respuesta := usuario
+		agregarRespuestaDe: pregunta
+		conDescripcion: 'res'.
+	self assert: (usuario borrarPosteo: respuesta) equals: true.
+	self assert: (usuario borrarPosteo: pregunta) equals: true.
+	self assert: (usuario borrarPosteo: respuesta) equals: false.
+]
+
 { #category : #tests }
 UsuarioTest >> testCalcularPuntaje [
 	| topicos top |

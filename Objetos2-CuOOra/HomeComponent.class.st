@@ -18,13 +18,13 @@ HomeComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 HomeComponent >> renderQuestiosnOn: aCanvas [
 	aCanvas heading
-		level: 2;
+		level: 1;
 		with: 'Ultimas Preguntas'.
 	aCanvas anchor
 		callback: [ self newQuestionRedirect ];
 		with: '+ hacer una pregunta'.
 	aCanvas break.
 	aCanvas break.
-	self session usuario preguntasPrincipales 
+	self session usuario preguntasPrincipales
 		do: [ :each | self renderQuestionOn: aCanvas aQuestion: each ]
 ]
