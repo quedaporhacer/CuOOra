@@ -48,15 +48,11 @@ Usuario >> agregarTopicoDeInteres: unTopico [
 	topicosDeInteres add: unTopico 
 ]
 
-{ #category : #settings }
-Usuario >> borrarPregunta: unaPregunta [
-	preguntas remove: unaPregunta ifAbsent: [ ^ false ].
-	^true
-]
-
-{ #category : #settings }
-Usuario >> borrarRespuesta: unaRespuesta [
-	respuestas remove: unaRespuesta ifAbsent: [ ^ false ].
+{ #category : #'as yet unclassified' }
+Usuario >> borrarPosteo: unPosteo [
+	respuestas
+		remove: unPosteo
+		ifAbsent: [ preguntas remove: unPosteo ifAbsent: [ ^ false ] ].
 	^ true
 ]
 

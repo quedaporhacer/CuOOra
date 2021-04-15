@@ -77,23 +77,19 @@ CuOOra >> autorDe: unPost [
 
 { #category : #settings }
 CuOOra >> borrarPregunta: unaPregunta [
-	(self topicosDe: unaPregunta ) do: [ :topico | topico borrarPregunta: unaPregunta ].
-	
+	(self topicosDe: unaPregunta)
+		do: [ :topico | topico borrarPregunta: unaPregunta ].
 	unaPregunta respuestas
 		do: [ :respuesta | self borrarRespuesta: respuesta ].
-	(self autorDe: unaPregunta) borrarPregunta: unaPregunta.
+	(self autorDe: unaPregunta) borrarPosteo:  unaPregunta.
 	unaPregunta borrarLike
 ]
 
 { #category : #'as yet unclassified' }
 CuOOra >> borrarRespuesta: unaRespuesta [
-
-	((usuarios flatCollect: [ :usuario | usuario preguntas ])
-		detect: [ :pregunta | pregunta respuestas includes: unaRespuesta ])
-		borrarRespuesta: unaRespuesta.
-		
-	unaRespuesta borrarLike.
-	(self autorDe: unaRespuesta) borrarRespuesta: unaRespuesta
+	(self preguntaDe: unaRespuesta) borrarRespuesta: unaRespuesta.
+	(self autorDe: unaRespuesta) borrarPosteo:  unaRespuesta.
+	unaRespuesta borrarLike
 ]
 
 { #category : #'as yet unclassified' }
@@ -107,6 +103,14 @@ CuOOra >> existeTopico: unString [
 CuOOra >> initialize [ 
 	usuarios := OrderedCollection new.
 	topicos := OrderedCollection new.
+]
+
+{ #category : #'as yet unclassified' }
+CuOOra >> preguntaDe: unaRespuesta [
+ "Retorna la pregunta que contiene la respuesta enviadad por parametro"
+	^ (usuarios flatCollect: [ :usuario | usuario preguntas ])
+		detect: [ :pregunta | pregunta tieneRespuestaA: unaRespuesta ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }

@@ -43,6 +43,13 @@ Pregunta >> respuestas [
 		asSortedCollection: [ :r1 :r2 | r1 calcularPuntaje > r2 calcularPuntaje ]
 ]
 
+{ #category : #'as yet unclassified' }
+Pregunta >> tieneRespuestaA: unaRespuesta [
+	"devuelve si la respuesta enviada por parametros esta incluida en la colecicon de respuestas "
+
+	^ respuestas includes: unaRespuesta
+]
+
 { #category : #accessing }
 Pregunta >> titulo [
 	^titulo

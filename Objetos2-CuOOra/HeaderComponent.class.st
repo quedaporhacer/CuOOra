@@ -4,6 +4,11 @@ Class {
 	#category : #'Objetos2-CuOOra-ui'
 }
 
+{ #category : #'as yet unclassified' }
+HeaderComponent >> homeRedirect [
+	self call: HomeComponent new.
+]
+
 { #category : #callback }
 HeaderComponent >> logOut [
 	self session unregister.
@@ -27,14 +32,20 @@ HeaderComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 HeaderComponent >> renderHedaerOn: aCanvas [
-	aCanvas heading: 'CuOOra '.
-	aCanvas anchor
-		callback: [ self profileRedirect: self session usuario ];
-		with: self session usuario nombre.
-	aCanvas space.
-	aCanvas anchor
-		callback: [ self logOut ];
-		with: 'logout'.
-	aCanvas space.
+	aCanvas heading: [
+		aCanvas anchor 
+		callback: [ self homeRedirect ];
+		with: 'CuOOra '.].
+	aCanvas div
+		style: 'float: right';
+		with: [ aCanvas anchor
+				callback: [ self profileRedirect: self session usuario ];
+				with: self session usuario nombre.
+			aCanvas space.
+			aCanvas anchor
+				callback: [ self logOut ];
+				with: 'logout'.
+			aCanvas space ].
+	aCanvas break.
 	aCanvas horizontalRule
 ]
