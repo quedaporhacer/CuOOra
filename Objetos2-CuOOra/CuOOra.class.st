@@ -30,8 +30,8 @@ CuOOra class >> soleInstance [
 			juan := soleInstance
 				agregarUsuarioConNombre: 'juan@cuoora.com'
 				conContraseña: 'juan@cuoora.com'.
-			juan agregarFollower: diego.
-			pedro agregarFollower: juan.
+			juan seguirUsuario: diego.
+			pedro seguirUsuario: juan.
 			soleInstance
 				agregarTopico: (Topico newConNombre: 'OO1' unaDescripcion: '');
 				agregarTopico: (Topico newConNombre: 'Test de unidad' unaDescripcion: '');
@@ -82,14 +82,14 @@ CuOOra >> borrarPregunta: unaPregunta [
 	unaPregunta respuestas
 		do: [ :respuesta | self borrarRespuesta: respuesta ].
 	(self autorDe: unaPregunta) borrarPosteo:  unaPregunta.
-	unaPregunta borrarLike
+	unaPregunta borrarPuntajes
 ]
 
 { #category : #'as yet unclassified' }
 CuOOra >> borrarRespuesta: unaRespuesta [
 	(self preguntaDe: unaRespuesta) borrarRespuesta: unaRespuesta.
 	(self autorDe: unaRespuesta) borrarPosteo:  unaRespuesta.
-	unaRespuesta borrarLike
+	unaRespuesta borrarPuntajes
 ]
 
 { #category : #'as yet unclassified' }

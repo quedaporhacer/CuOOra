@@ -22,10 +22,12 @@ QuestionComponent >> questionAndAnswerRedirect: unaPregunta [
 { #category : #rendering }
 QuestionComponent >> renderAnchorScorePostOn: aCanvas De: unPosteo [
 	aCanvas anchor
+	style: 'text-decoration: none'; 
 		callback: [ self setScore: unPosteo value: true ];
 		with: 'like'.
 	aCanvas text: ' |  '.
 	aCanvas anchor
+	style: 'text-decoration: none'; 
 		callback: [ self setScore: unPosteo value: false ];
 		with: 'dislike'
 ]
@@ -38,10 +40,11 @@ QuestionComponent >> renderAnswaersQuestionOn: aCanvas De: unaPregunta [
 ]
 
 { #category : #rendering }
-QuestionComponent >> renderAuthorPostOn: aCanvas De: unPost [ 
+QuestionComponent >> renderAuthorPostOn: aCanvas De: unPost [
 	aCanvas text: 'Realizada por '.
 	aCanvas
 		strong: [ aCanvas anchor
+				style: 'text-decoration: none; color: black';
 				callback: [ self profileRedirect: (self model autorDe: unPost) ];
 				with: (self model autorDe: unPost) nombre ]
 ]
@@ -49,7 +52,7 @@ QuestionComponent >> renderAuthorPostOn: aCanvas De: unPost [
 { #category : #rendering }
 QuestionComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
 	aCanvas
-		div: [ self renderTitleQuestionOn: aCanvas De: unaPregunta.
+		unorderedList: [ self renderTitleQuestionOn: aCanvas De: unaPregunta.
 			aCanvas break.
 			self renderTopicQuestionOn: aCanvas De: unaPregunta.
 			aCanvas break.
@@ -59,7 +62,8 @@ QuestionComponent >> renderQuestionOn: aCanvas aQuestion: unaPregunta [
 			self renderScorePostOn: aCanvas De: unaPregunta.
 			aCanvas break.
 			self renderAnchorScorePostOn: aCanvas De: unaPregunta.
-			aCanvas horizontalRule ]
+			 ].
+		aCanvas horizontalRule
 ]
 
 { #category : #rendering }
@@ -72,10 +76,11 @@ QuestionComponent >> renderScorePostOn: aCanvas De: unPosteo [
 
 { #category : #rendering }
 QuestionComponent >> renderTitleQuestionOn: aCanvas De: unaPregunta [
-	aCanvas 
-	 big: [ aCanvas anchor
-						callback: [ self questionAndAnswerRedirect: unaPregunta ];
-						with: unaPregunta titulo ]. 
+	aCanvas
+		big: [ aCanvas anchor
+				style: 'text-decoration: none; color: black';
+				callback: [ self questionAndAnswerRedirect: unaPregunta ];
+				with: unaPregunta titulo ]
 ]
 
 { #category : #rendering }
@@ -91,5 +96,5 @@ QuestionComponent >> renderTopicQuestionOn: aCanvas De: unaPregunta [
 
 { #category : #callback }
 QuestionComponent >> setScore: unaPregunta value: aBoolean [.
-	unaPregunta agregarLikeConEstado: aBoolean conAutor: self session usuario
+	unaPregunta agregarPuntajeConEstado: aBoolean conAutor: self session usuario
 ]

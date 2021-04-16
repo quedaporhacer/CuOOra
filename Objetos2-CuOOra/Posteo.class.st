@@ -15,17 +15,17 @@ Posteo class >> newConDescripcion: unaDescripcion [
 ]
 
 { #category : #'as yet unclassified' }
-Posteo >> agregarLikeConEstado: unEstado conAutor: unUsuario [
+Posteo >> agregarPuntajeConEstado: unEstado conAutor: unUsuario [
 |like|
-	(self getLikeDe: unUsuario)
-		ifNotNil: [ puntajes remove: (self getLikeDe: unUsuario) ].
+	(self puntajeDe: unUsuario)
+		ifNotNil: [ puntajes remove: (self puntajeDe: unUsuario) ].
 		like:= Puntaje newConEstado: unEstado conAutor: unUsuario.
 	puntajes add: like.
 	^like
 ]
 
 { #category : #'as yet unclassified' }
-Posteo >> borrarLike [
+Posteo >> borrarPuntajes [
 	puntajes removeAll
 ]
 
@@ -50,13 +50,6 @@ Posteo >> fechaYHora [
 	^fechaYHora 
 ]
 
-{ #category : #'as yet unclassified' }
-Posteo >> getLikeDe: unUsuario [
-
-
-	^ puntajes detect: [ :each | each autor = unUsuario ] ifNone: [ nil ]
-]
-
 { #category : #initialization }
 Posteo >> initializeConDescripcion: unaDescripcion [
 	descripcion := unaDescripcion.
@@ -72,4 +65,11 @@ Posteo >> like [
 { #category : #'as yet unclassified' }
 Posteo >> puntaje [
 	^puntajes 
+]
+
+{ #category : #'as yet unclassified' }
+Posteo >> puntajeDe: unUsuario [
+
+
+	^ puntajes detect: [ :each | each autor = unUsuario ] ifNone: [ nil ]
 ]

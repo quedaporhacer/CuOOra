@@ -14,7 +14,7 @@ ProfileComponent class >> newConUsuario: unUsuario [
 
 { #category : #callbacks }
 ProfileComponent >> follow [
-	self session usuario agregarFollower: usuario.
+	self session usuario seguirUsuario: usuario.
 ]
 
 { #category : #initialization }
@@ -31,12 +31,12 @@ ProfileComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 ProfileComponent >> renderFollowOn: aCanvas de: unUsuario [
-	(self session usuario follow: usuario)
-						ifTrue: [ aCanvas small: 'following' ]
-						ifFalse: [ aCanvas
-								small: [ aCanvas anchor
-										callback: [ self follow ];
-										with: 'follow' ] ]
+	aCanvas
+		small: [ aCanvas anchor
+				callback: [ self follow ];
+				with: [ (self session usuario sigueA: usuario)
+						ifTrue: [ aCanvas small: 'follow' ]
+						ifFalse: [ aCanvas small: 'unfollow' ] ] ]
 ]
 
 { #category : #rendering }
@@ -48,11 +48,14 @@ ProfileComponent >> renderQuestiosnOn: aCanvas [
 { #category : #rendering }
 ProfileComponent >> renderTitleOn: aCanvas [
 	self session usuario == usuario
-		ifTrue: [ aCanvas heading: [ aCanvas span: 'Tus preguntas' ] ]
+		ifTrue: [ aCanvas heading
+				level: 2;
+				with: 'Tus preguntas' ]
 		ifFalse: [ aCanvas
-				heading: [ aCanvas span: 'Preguntas de '.
+				heading
+				level: 2;
+				with: 'Preguntas de '.
 					aCanvas span: usuario nombre.
-					aCanvas space.	
-		self renderFollowOn: aCanvas de: usuario .
-					 ] ]
+					aCanvas space.
+					self renderFollowOn: aCanvas de: usuario  ]
 ]

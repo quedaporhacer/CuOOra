@@ -53,7 +53,7 @@ CuOOraTest >> testBorrarPregunta [
 	self assert: topico preguntas size equals: 1.
 	self assert: usuario preguntas size equals: 1.
 	usuario agregarRespuestaDe: pregunta conDescripcion: 'pregunta 1'.
-	pregunta agregarLikeConEstado: true conAutor: usuario.
+	pregunta agregarPuntajeConEstado: true conAutor: usuario.
 	self assert: pregunta respuestas size equals: 1.
 	self assert: pregunta puntaje size equals: 1.
 	cuoora borrarPregunta: pregunta.
@@ -78,7 +78,7 @@ CuOOraTest >> testBorrarRespuesta [
 	respuesta := usuario
 		agregarRespuestaDe: pregunta
 		conDescripcion: 'desc'.
-	respuesta agregarLikeConEstado: true conAutor: usuario.
+	respuesta agregarPuntajeConEstado: true conAutor: usuario.
 	self assert: usuario respuestas size equals: 1.
 	self assert: pregunta respuestas size equals: 1.
 	self assert: respuesta puntaje size equals: 1.

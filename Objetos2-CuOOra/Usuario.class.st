@@ -19,11 +19,6 @@ Usuario class >> newConNombre: unNombre conContraseña: unaContraseña [
 ]
 
 { #category : #settings }
-Usuario >> agregarFollower: unUsuario [
-	follower add: unUsuario 
-]
-
-{ #category : #settings }
 Usuario >> agregarPreguntaConTitulo: unTitulo conDescripcion: unaDescripcion conTopicos: topicos [
 	| pregunta |
 	pregunta := Pregunta
@@ -74,11 +69,6 @@ Usuario >> esAutorDe: unPost [
 	^ (preguntas union: respuestas) anySatisfy: [ :each | each = unPost ]
 ]
 
-{ #category : #'as yet unclassified' }
-Usuario >> follow: unUsuario [
-	^follower includes: unUsuario  
-]
-
 { #category : #initialization }
 Usuario >> initializeConNombre: unNombre conContraseña: unaContraseña [
 	nombre := unNombre.
@@ -126,4 +116,18 @@ Usuario >> respuestas [
 Usuario >> respuestasValidas [
 	^ respuestas
 		difference: (preguntas flatCollect: [ :pregunta | pregunta respuestas ])
+]
+
+{ #category : #settings }
+Usuario >> seguirUsuario: unUsuario [
+	(self sigueA: unUsuario)
+		ifFalse: [ 
+			follower add: unUsuario.]
+		ifTrue: [ follower remove: unUsuario  ].
+
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> sigueA: unUsuario [
+	^follower includes: unUsuario  
 ]

@@ -30,6 +30,14 @@ LoginComponent >> renderButtonsOn: aCanvas [
 ]
 
 { #category : #rendering }
+LoginComponent >> renderContentOn: aCanvas [ 
+	aCanvas heading
+		level: 2;
+		with: 'Sing in'.
+	super renderContentOn: aCanvas .
+]
+
+{ #category : #rendering }
 LoginComponent >> renderSignInButtonOn: aCanvas [
 	aCanvas submitButton
 		callback: [ self login ];

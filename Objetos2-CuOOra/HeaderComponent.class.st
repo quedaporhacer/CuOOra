@@ -32,17 +32,20 @@ HeaderComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 HeaderComponent >> renderHedaerOn: aCanvas [
-	aCanvas heading: [
-		aCanvas anchor 
-		callback: [ self homeRedirect ];
-		with: 'CuOOra '.].
+	aCanvas
+		big: [ aCanvas anchor
+				style: 'text-decoration: none; color: black;font-size: 40px';
+				callback: [ self homeRedirect ];
+				with: 'CuOOra ' ].
 	aCanvas div
 		style: 'float: right';
 		with: [ aCanvas anchor
 				callback: [ self profileRedirect: self session usuario ];
-				with: self session usuario nombre.
+				with: [
+					aCanvas strong: self session usuario nombre].
 			aCanvas space.
 			aCanvas anchor
+				style: 'text-decoration: none';
 				callback: [ self logOut ];
 				with: 'logout'.
 			aCanvas space ].

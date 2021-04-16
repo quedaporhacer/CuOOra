@@ -34,9 +34,13 @@ AnswerQuestionComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 AnswerQuestionComponent >> renderInputOn: aCanvas [
-	aCanvas text: 'RESPONDER'.
+	aCanvas span
+		style: 'display: inline';
+		with: 'RESPONDER'.
 	aCanvas
-		form: [ aCanvas textArea on: #descripcion of: self.
+		form: [ aCanvas textArea
+				on: #descripcion of: self;
+				style: 'width: 250px; height: 200px'.
 			aCanvas break.
 			aCanvas submitButton
 				callback: [ self addAnswer ];

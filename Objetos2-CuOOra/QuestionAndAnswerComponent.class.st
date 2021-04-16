@@ -12,24 +12,27 @@ QuestionAndAnswerComponent >> answerQuestionRedirect [
 { #category : #rendering }
 QuestionAndAnswerComponent >> renderAnchorOn: aCanvas [
 	aCanvas anchor
-		callback: [ self answerQuestionRedirect  ];
-		with: '+ agregar una respuesta'
+	   style: 'text-decoration: none;  padding-left: 100px;';
+		callback: [ self answerQuestionRedirect ];
+		with: '+ Agregar Respuestas'
 ]
 
 { #category : #rendering }
 QuestionAndAnswerComponent >> renderAnswerOn: aCanvas [
 	pregunta respuestas
 		do: [ :res | 
-			aCanvas big: [ self renderAuthorPostOn: aCanvas De: res.  ].
-			
-			aCanvas break.
-			aCanvas text: res descripcion.
-			aCanvas break.
-			self renderScorePostOn: aCanvas De: res.
-			aCanvas break.
-			self renderAnchorScorePostOn: aCanvas De: res.
+			aCanvas
+				unorderedList: [ aCanvas big: [ self renderAuthorPostOn: aCanvas De: res ].
+					aCanvas break.
+					aCanvas text: res descripcion.
+					aCanvas break.
+					self renderScorePostOn: aCanvas De: res.
+					aCanvas break.
+					self renderAnchorScorePostOn: aCanvas De: res ].
 			aCanvas horizontalRule ].
-	aCanvas text: 'No hay mas respuestas'
+	aCanvas span 
+	style: 'padding-left: 100px;';
+	 with: 'No hay mas respuestas'
 ]
 
 { #category : #rendering }
@@ -43,7 +46,7 @@ QuestionAndAnswerComponent >> renderButtonOn: aCanvas [
 QuestionAndAnswerComponent >> renderContentOn: aCanvas [
 	super renderContentOn: aCanvas.
 	self renderQuestionOn: aCanvas aQuestion: pregunta.
-	self renderAnswerOn: aCanvas.
-	aCanvas break.
-	self renderAnchorOn: aCanvas
+	aCanvas
+		unorderedList: [ self renderAnswerOn: aCanvas. aCanvas break.
+			self renderAnchorOn: aCanvas ]
 ]

@@ -16,11 +16,11 @@ PreguntaTest >> setUp [
 PreguntaTest >> testCalcularPuntaje [
 	self assert: pregunta calcularPuntaje equals: 50.
 	pregunta
-		agregarLikeConEstado: true
+		agregarPuntajeConEstado: true
 		conAutor: (Usuario newConNombre: 'juan' conContraseña: '123').
 	self assert: pregunta calcularPuntaje equals: 51.
 	pregunta
-		agregarLikeConEstado: false
+		agregarPuntajeConEstado: false
 		conAutor: (Usuario newConNombre: 'ignacio' conContraseña: '123').
 	self assert: pregunta calcularPuntaje equals: 50
 ]
@@ -39,13 +39,13 @@ PreguntaTest >> testRespuestas [
 		agregarRespuestaDe: pregunta
 		conDescripcion: 'r3'.
 	self assert: pregunta respuestas size equals: 3.
-	r1 agregarLikeConEstado: true conAutor: nil.
-	r3 agregarLikeConEstado: false conAutor: nil.
+	r1 agregarPuntajeConEstado: true conAutor: nil.
+	r3 agregarPuntajeConEstado: false conAutor: nil.
 	self assert: pregunta respuestas first equals: r1.
 	self assert: pregunta respuestas last equals: r3.
 	r2
-		agregarLikeConEstado: true conAutor: nil;
-		agregarLikeConEstado: true conAutor: nil.
+		agregarPuntajeConEstado: true conAutor: nil;
+		agregarPuntajeConEstado: true conAutor: nil.
 	self assert: pregunta respuestas first equals: r2.
 	self assert: pregunta respuestas last equals: r3
 ]

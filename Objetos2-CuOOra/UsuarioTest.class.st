@@ -82,9 +82,9 @@ UsuarioTest >> testCalcularPuntaje [
 		agregarRespuestaDe: (Pregunta newConTitulo: '?' conDescripcion: 'dec')
 		conDescripcion: 'desc'.
 	self assert: usuario calcularPuntaje equals: 70.
-	usuario preguntas first agregarLikeConEstado: true conAutor: usuario.
+	usuario preguntas first agregarPuntajeConEstado: true conAutor: usuario.
 	self assert: usuario calcularPuntaje equals: 71.
-	usuario preguntas first agregarLikeConEstado: false conAutor: usuario.
+	usuario preguntas first agregarPuntajeConEstado: false conAutor: usuario.
 	self assert: usuario calcularPuntaje equals: 69.
 	
 	usuario
@@ -126,7 +126,7 @@ UsuarioTest >> testPreguntasPrincipales [
 		agregarPreguntaConTitulo: '?'
 		conDescripcion: 'pregunta relevante'
 		conTopicos: topicos.
-	usuario agregarFollower: usuario2.
+	usuario seguirUsuario: usuario2.
 	self assert: (usuario preguntasPrincipales includes: pregunta1).
 	topicos2 := OrderedCollection new.
 	topicos2 add: topico2.
@@ -171,7 +171,7 @@ UsuarioTest >> testPreguntasRelevantes [
 		agregarPreguntaConTitulo: '?'
 		conDescripcion: 'pregunta relevante'
 		conTopicos: topicos.
-	usuario agregarFollower: usuario2.
+	usuario seguirUsuario: usuario2.
 	self assert: usuario preguntasRelevantes size equals: 1.
 	topicos2 := OrderedCollection new.
 	topicos2 add: topico2.

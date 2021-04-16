@@ -30,7 +30,8 @@ CreateQuestionComponent >> newQuestionRedirect [
 				conDescripcion: descripcion
 				conTopicos:
 					(colTopicos
-						collect: [ :nombreTopico | self model existeTopico: nombreTopico ]) ]
+						collect: [ :nombreTopico | self model existeTopico: nombreTopico ]) ].
+					self answer.
 ]
 
 { #category : #rendering }
@@ -42,24 +43,38 @@ CreateQuestionComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 CreateQuestionComponent >> renderFormOn: aCanvas [
-	aCanvas big: 'Nueva Pregunta'.
+	aCanvas heading
+		level: 1;
+		with: 'Nueva Preguntas'.
 	aCanvas horizontalRule.
 	aCanvas
 		form: [ aCanvas
-				paragraph: [ aCanvas text: 'titulo'.
-					aCanvas textInput on: #titulo of: self ].
+				paragraph: [ aCanvas text: 'Titulo'.
+					aCanvas break.
+					aCanvas textInput
+						on: #titulo of: self;
+						style: 'width: 250px';
+						placeholder: 'Escriba aqui el titulo de su pregunta' ].
 			aCanvas
-				paragraph: [ aCanvas text: 'descripcion'.
-					aCanvas textArea on: #descripcion of: self ].
+				paragraph: [ aCanvas text: 'Descripcion'.
+					aCanvas break.
+					aCanvas textArea
+						on: #descripcion of: self;
+						style: 'width: 250px; height: 200px';
+						placeholder: 'Escriba aqui el desarollo de su pregunta' ].
 			aCanvas
-				paragraph: [ aCanvas text: 'topicos'.
-					aCanvas textInput on: #topicos of: self ].
+				paragraph: [ aCanvas text: 'Topicos'.
+					aCanvas break.
+					aCanvas textInput
+						on: #topicos of: self;
+						style: 'width: 250px;';
+						placeholder: 'ingrese topicos separados por coma' ].
 			aCanvas submitButton
 				callback: [ self newQuestionRedirect ];
 				with: 'aceptar'.
 			aCanvas space.
 			aCanvas button
-				callback: [ self answer  ];
+				callback: [ self answer ];
 				with: 'cancelar' ]
 ]
 
